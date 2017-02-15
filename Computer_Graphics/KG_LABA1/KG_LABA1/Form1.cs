@@ -119,12 +119,19 @@ namespace KG_LABA1
                     }
                 }
             }
+
+            if (couter< 3)
+            {
+                MessageBox.Show("мало точек");
+                return;
+            }
             
             drawlist.Clear();
             drawlist.Add(point_list[ans.id1]);
             drawlist.Add(point_list[ans.id2]);
             drawlist.Add(point_list[ans.id3]);
 
+            
             //Вычисляем прямоугольник для описанной окружности
             PointF tcentre = BigCircle(drawlist[0].GetPointF, drawlist[1].GetPointF, drawlist[2].GetPointF);
             float radius = (float)(drawlist[0].GetLength(drawlist[0], new Point((double)tcentre.X, (double)tcentre.Y)));
@@ -134,6 +141,7 @@ namespace KG_LABA1
             drawlist.Add(new Point(tcentre.X, tcentre.Y));
             drawlist.Add(new Point(upcorner.X, upcorner.Y));
             drawlist.Add(new Point(downcorner.X,downcorner.Y));
+
 
 
             //dataGridView1.Rows.Clear();
@@ -194,7 +202,7 @@ namespace KG_LABA1
             //Рисуем подписи
             for (int i = 0; i < 3; i++)
             {
-                g.DrawString("(" + p_list[i].GetXint.ToString() + "," + p_list[i].GetYint.ToString() + ")",drawFont,drawBrush,conv.GetPointWithMargin(p_list[i]));
+                g.DrawString("(" + p_list[i].GetXint.ToString() + "," + p_list[i].GetYfloat.ToString() + ")", drawFont, drawBrush, conv.GetPointWithMargin(p_list[i]));
             }
                     
 
@@ -213,9 +221,9 @@ namespace KG_LABA1
         //Печать ответа
         private void PrintAnswer(List<Point> p_list)
         {
-            string p0="(" + p_list[0].GetXint.ToString() + "," + p_list[0].GetYint.ToString() + ")";
-            string p1="(" + p_list[1].GetXint.ToString() + "," + p_list[1].GetYint.ToString() + ")";
-            string p2="(" + p_list[2].GetXint.ToString() + "," + p_list[2].GetYint.ToString() + ")";
+            string p0 = "(" + p_list[0].GetXfloat.ToString() + "," + p_list[0].GetYfloat.ToString() + ")";
+            string p1 = "(" + p_list[1].GetXfloat.ToString() + "," + p_list[1].GetYfloat.ToString() + ")";
+            string p2 = "(" + p_list[2].GetXfloat.ToString() + "," + p_list[2].GetYfloat.ToString() + ")";
             string answer = "Треугольник образованный точками с координатами " + p0 + ", " + p1 + ", " + p2 +
                 " имеет наименьшую разность площадей вписанной и описанной окружностей равную " + p_list[0].AreaDelta(p_list[1], p_list[2])+
                 " кв. единиц.";
@@ -308,5 +316,6 @@ namespace KG_LABA1
 
             return 0;
         }
+
     }
 }
