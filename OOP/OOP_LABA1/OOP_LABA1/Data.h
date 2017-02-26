@@ -1,8 +1,10 @@
-#pragma once
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <math.h>
+#include <algorithm>;
+
+#pragma once
 #define OK 0
 #define FAIL_READ -1
 #define ERROR_OPEN_OUTPUT_FILE -2
@@ -45,7 +47,6 @@ struct  Data
 	
 };
 
-
 int ReadPoints(FILE *file,MyPoint * point_array,int n);
 
 int ReadEdges(FILE *file,Edge * edge_array,int n);
@@ -55,6 +56,7 @@ int LoadFile(char* filename,struct Data *datapack);
 void freedata(struct Data *datapack);
 
 double** allocate_matrix_solid(int n, int m);
+
 Matrix * erase(Matrix *matrA);
 
 Matrix* ConvertFromPoint(MyPoint* point);

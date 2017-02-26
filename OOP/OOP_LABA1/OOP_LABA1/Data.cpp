@@ -1,26 +1,23 @@
 #include "Data.h"
-#include <math.h>
-#include  <algorithm>;
+
 using namespace System::Drawing;
 using namespace std;
 
+//Чтение точек из файла
 int ReadPoints(FILE *file,MyPoint * point_array,int n)
 {
-	//struct Point * point_array=(Point*) malloc(sizeof(Point)*n);
 	for (int i = 0; i < n; ++i)
 	{
-        //char  ch;
-        //fscanf(file,"%c",&ch);
 		if(fscanf(file,"[%lf,%lf,%lf]\n", &point_array[i].x,&point_array[i].y,&point_array[i].z)!=3)
 		{
 			return FAIL_READ;
 		}
-
 	}
 	return OK;
 
 }
 
+//Чтение ребер из файла
 int ReadEdges(FILE *file,Edge * edge_array,int n)
 {
 	for (int i = 0; i < n; ++i)
@@ -33,6 +30,7 @@ int ReadEdges(FILE *file,Edge * edge_array,int n)
 	return OK;
 }
 
+//Загрузка файла
 int LoadFile(char *filename,Data *datapack)
 {
 	int code_error=OK;
@@ -41,10 +39,10 @@ int LoadFile(char *filename,Data *datapack)
 	if (file_in == 0)
 			code_error=ERROR_OPEN_OUTPUT_FILE;
 
-
 	if (!datapack)
 		code_error=ERROR_MALLOC;
 
+	//Чтение количества точек и вершин
 	if(code_error==OK)
 	{
 		if((fscanf(file_in,"%d %d\n", &datapack->n_points,&datapack->n_edges)!=2))
@@ -63,33 +61,24 @@ int LoadFile(char *filename,Data *datapack)
 	if (!datapack->Edge_array)
 		code_error=ERROR_MALLOC;
 
+	//Чтение данных
 	if(code_error==OK)
 		code_error=ReadPoints(file_in,datapack->Point_array,datapack->n_points);
 
-    /*for (int i = 0; i <datapack->n_points ; ++i) {
-        printf("[%f,%f,%f]\n",datapack->Point_array[i].x,datapack->Point_array[i].y,datapack->Point_array[i].z);
-
-    }*/
-
 	if(code_error==OK)
 		code_error=ReadEdges(file_in,datapack->Edge_array,datapack->n_edges);
-
-    /*for (int i = 0; i <datapack->n_edges ; ++i) {
-        printf("[%d - %d]\n",datapack->Edge_array[i].FromPointId,datapack->Edge_array[i].ToPointId);
-
-    }
-     */
 
 	if (file_in)
 	{
 		fclose(file_in);
 	}
-    //printf("hi");
+	//Поск центра фигуры
 	SearchCentre(datapack);
 
 	return code_error;
 }
 
+//Освобождение ресурсов
 void freedata(Data *datapack)
 {
 	if(datapack)
@@ -105,10 +94,16 @@ void freedata(Data *datapack)
             free(datapack->Edge_array);
             datapack->Edge_array=NULL;
         }
+		if(datapack->DrawCentre)
+		{
+			delete datapack->DrawCentre;
+			datapack->DrawCentre=NULL;
+		}
     }
 
 }
 
+//выделение памяти и забивка нулями матрицы
 double** allocate_matrix_solid(int n, int m)
 {
     double **data =(double **)malloc(n * sizeof(double*) + n * m * sizeof(double));
@@ -128,6 +123,7 @@ double** allocate_matrix_solid(int n, int m)
     return data;
 }
 
+//Удаление матриц
 struct Matrix * erase(struct Matrix *matrA)
 {
     if(matrA)
@@ -140,7 +136,7 @@ struct Matrix * erase(struct Matrix *matrA)
     return NULL;
 }
 
-
+//Конвертация из точки в матрицу
 struct Matrix* ConvertFromPoint(struct MyPoint* point)
 {
     struct Matrix* matrC=(struct Matrix*) malloc(sizeof(struct Matrix));
@@ -156,6 +152,7 @@ struct Matrix* ConvertFromPoint(struct MyPoint* point)
     return matrC;
 }
 
+//Конвертация из матрицы в точку
 struct MyPoint ConvertFromMatrix(struct Matrix* matr)
 {
     struct MyPoint point;
@@ -165,6 +162,7 @@ struct MyPoint ConvertFromMatrix(struct Matrix* matr)
     return point;
 }
 
+//Умножение
 struct Matrix* multiplication(const struct Matrix *matrA,const struct Matrix *matrB,int *codeerror)
 {
     *codeerror=OK;
@@ -199,12 +197,10 @@ struct Matrix* multiplication(const struct Matrix *matrA,const struct Matrix *ma
     return  matrC;
 }
 
+//Поворот вокруг оси X
 void TurnByX (double angle, struct Data *datapack)
 {
-    struct Matrix* matr=(struct Matrix*) malloc(sizeof(struct Matrix));
-    /*if(!matr)
-        return NULL;
-      */
+    struct Matrix* matr=(struct Matrix*) malloc(sizeof(struct Matrix)); 
 
     //TODO Вынести конствнты
     matr->n=3;
@@ -230,6 +226,7 @@ void TurnByX (double angle, struct Data *datapack)
     matr=erase(matr);
 }
 
+//Поворот вокруг оси Y
 void TurnByY (double angle, struct Data *datapack)
 {
     struct Matrix* matr=(struct Matrix*) malloc(sizeof(struct Matrix));
@@ -256,13 +253,11 @@ void TurnByY (double angle, struct Data *datapack)
     matr=erase(matr);
 }
 
+//Поворот вокруг оси Z
 void TurnByZ (double angle, struct Data *datapack)
 {
     struct Matrix* matr=(struct Matrix*) malloc(sizeof(struct Matrix));
-    /*if(!matr)
-        return NULL;
-      */
-
+   
     //TODO Вынести конствнты
     matr->n=3;
     matr->m=3;
@@ -287,6 +282,7 @@ void TurnByZ (double angle, struct Data *datapack)
     matr=erase(matr);
 }
 
+//Отрисовка
 void Draw( System::Drawing::Graphics^ g, Pen^ pen, Data *datapack)
 {
 	float dx=datapack->DrawCentre->X;
@@ -303,8 +299,7 @@ void Draw( System::Drawing::Graphics^ g, Pen^ pen, Data *datapack)
 	}
 }
 
-
-
+//Поиск центра
 void SearchCentre(struct Data *datapack)
 {
 	MyPoint max=datapack->Point_array[0];
