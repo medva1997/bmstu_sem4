@@ -23,15 +23,15 @@ namespace algorithms_1
 
         public static double func(double x)
         {
-            return Math.Sin(Math.PI / 6 * x);
+            return Math.Sin( x);
         }
 
         public static void Main(string[] args)
         {
 
-            Console.Write("Введите начальное значение x для генерации таблицы: ");
-            //double xStart = -1;
-            double xStart = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите начальное значение x для генерации таблицы: ");
+            double xStart = -1;
+            //double xStart = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("Введите конечное значение x для генерации таблицы: ");
             //double xEnd = 8;
@@ -46,9 +46,9 @@ namespace algorithms_1
 
             double xSearch = Convert.ToDouble(Console.ReadLine().Replace(',','.'));
 
-            Console.Write("Введите количество используемых узлов: ");
+            Console.Write("Введите степень полинома: ");
             //int N=4 ;
-            int N= Convert.ToInt32(Console.ReadLine());
+            int N= Convert.ToInt32(Console.ReadLine())+1;
 
             List<data> fullyTable=new List<data>();
             List<data> yTable=new List<data>();
@@ -56,12 +56,17 @@ namespace algorithms_1
             generate_matrix(xStart,xEnd,xStep,xTable,fullyTable);
 
             int stindex = 0;
-            while (fullyTable[stindex].Xleft<xSearch)
+            while ((stindex < fullyTable.Count)&&(fullyTable[stindex].Xleft<xSearch))
             {
                 stindex++;
 
             }
             stindex = stindex - N / 2;
+
+            if (stindex < 0)
+                stindex = 0;
+            if (stindex+N/2 >= fullyTable.Count)
+                stindex = fullyTable.Count - N;
 
             Console.WriteLine();
             Console.WriteLine("Для решения будут использованы следующие узлы");
@@ -92,8 +97,10 @@ namespace algorithms_1
             }
             Console.WriteLine();
             Console.WriteLine("Рассчитанное значение: {0:0.0000000}",rez);
-            Console.WriteLine("Реальное значение:       {0:0.0000000}",func(xSearch));
-            Console.WriteLine("Погрешность:           {0:0.0000000}",Math.Abs(func(xSearch)-rez));
+            Console.WriteLine("Реальное значение:     {0:0.0000000}",func(xSearch));
+            Console.WriteLine("Погрешность:           {0:0.0000000}%",Math.Abs((rez-func(xSearch))/func(xSearch))*100);
+
+
 /*
 
             List<double> FullyTable=new List<double>();
@@ -135,9 +142,9 @@ namespace algorithms_1
             Console.WriteLine();
             Console.WriteLine("Рассчитанное значение: {0:0.0000000}",rez);
             Console.WriteLine("Реальное значение:       {0:0.0000000}",func(xSearch));
-            Console.WriteLine("Погрешность:           {0:0.0000000}",Math.Abs(func(xSearch)-rez));
-*/
+            Console.WriteLine("Погрешность:           {0:0.0000000}%",Math.Abs((rez-func(xSearch))/func(xSearch))*100);
 
+*/
             //Console.ReadLine();
         }
 
