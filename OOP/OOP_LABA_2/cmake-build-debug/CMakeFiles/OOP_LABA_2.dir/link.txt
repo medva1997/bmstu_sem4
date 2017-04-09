@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/OOP_LABA_2.dir/main.cpp.o CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o  -o OOP_LABA_2 

@@ -1,0 +1,3 @@
+/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/OOP_LABA_2.dir
