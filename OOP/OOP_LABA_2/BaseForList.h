@@ -15,17 +15,13 @@ public:
 
     bool isEmpty() const;
 
-    size_t getCurrentSize() const;
-
-    size_t getMaxSize() const;
+    int getSize() const;
+    void incSize();
+    void decSize();
+    void setSize(int n);
 
 private:
-    size_t CurrentSize;
-
-    size_t MaxSize;
-
-    virtual void setMaxSize(size_t newSize) = 0;
+    int CurrentSize;
 };
-
 
 #endif //OOP_LABA_2_BASEFORLIST_H

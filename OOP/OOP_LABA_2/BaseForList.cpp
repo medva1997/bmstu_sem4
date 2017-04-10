@@ -4,15 +4,24 @@
 
 #include "BaseForList.h"
 
-BaseForList::BaseForList() : CurrentSize(0), MaxSize(0) {}
+BaseForList::BaseForList() : CurrentSize(0){}
 
-size_t BaseForList::getCurrentSize() const {
+int BaseForList::getSize() const {
     return CurrentSize;
 }
 
-size_t BaseForList::getMaxSize() const {
-    return MaxSize;
+void BaseForList::decSize(){
+    CurrentSize--;
 }
+
+void BaseForList::incSize(){
+    CurrentSize++;
+}
+
+void BaseForList::setSize(int n){
+    CurrentSize=n;
+}
+
 
 bool BaseForList::isEmpty() const {
     return (CurrentSize == 0);

@@ -1,16 +1,34 @@
 #include <iostream>
 #include "MyList.h"
+#include "MyList.cpp"
+
 #include "MyIterator.h"
 
 int main() {
 
 
     MyList<int> list;
-    MyList<int> list2;
-    list.pushFront(10);
-    list.pushBack(10);
-    list.pushBack(11);
-    list.pushBack(12);
+    MyList<int> list2(2,10000,20000);
+    list=list2;
+
+    std::cout<<list<<std::endl;
+    if(list==list2)
+        std::cout<<"true"<<std::endl;
+
+    list2.pushFront(10);
+    list2<<10;
+    list2+=11;
+    list2.popBack();
+    list2.popFront();
+    list.merge(list2);
+    list+=list2;
+    list.remove(10);
+    list-=10;
+
+
+    if(list!=list2)
+        std::cout<<"true"<<std::endl;
+
 
     list2.pushFront(2);
     list2.pushBack(10);
@@ -28,7 +46,30 @@ int main() {
 
     std::cout << std::endl;
 
-    list.free_all();
+    ///////////////////////////////////////////////////////////
+    MyIterator<int> iter1(list), iter2(list2);
+    bool eq = false;
+    try
+    {
+        eq = iter1.equal(iter2);
+    }
+    catch(MExceptionBase& exc)
+    {
+        std::cout << "Error: " << exc.what() << std::endl;
+    }
+    /////////////////////////////////////////////////////////
+
+    int val;
+    --iter1;
+
+    try
+    {
+        val = iter1.value();
+    }
+    catch (MExceptionBase& exc)
+    {
+        std::cout << "Error: " << exc.what() << std::endl;
+    }
 
 
     std::cout << "Hello, World!" << std::endl;

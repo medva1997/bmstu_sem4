@@ -31,6 +31,8 @@ MException.h
 /home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp
 MyList.h
 /home/alexey/CLionProjects/OOP_LABA_2/MyList.h
+cstdarg
+-
 
 /home/alexey/CLionProjects/OOP_LABA_2/MyList.h
 BaseForList.h
@@ -45,6 +47,8 @@ iostream
 -
 MyList.h
 /home/alexey/CLionProjects/OOP_LABA_2/MyList.h
+MyList.cpp
+/home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp
 MyIterator.h
 /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.h
 

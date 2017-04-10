@@ -18,6 +18,7 @@ CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o: ../MyList.h
 CMakeFiles/OOP_LABA_2.dir/main.cpp.o: ../BaseForList.h
 CMakeFiles/OOP_LABA_2.dir/main.cpp.o: ../MException.h
 CMakeFiles/OOP_LABA_2.dir/main.cpp.o: ../MyIterator.h
+CMakeFiles/OOP_LABA_2.dir/main.cpp.o: ../MyList.cpp
 CMakeFiles/OOP_LABA_2.dir/main.cpp.o: ../MyList.h
 CMakeFiles/OOP_LABA_2.dir/main.cpp.o: ../main.cpp
 
