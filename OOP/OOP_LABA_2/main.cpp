@@ -3,6 +3,7 @@
 #include "MyList.cpp"
 
 #include "MyIterator.h"
+#include "MyIterator.cpp"
 
 int main() {
 
