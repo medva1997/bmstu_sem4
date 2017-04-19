@@ -39,16 +39,16 @@ namespace Laba4
 
         }
 
-        //NATASHA
+        //Used
         protected override void drawEllipse(ref Bitmap bitmap, int cx, int cy, int rx, int ry)
         {
-            //drawEllipse1(ref bitmap, cx, cy, rx, ry);
-            //drawEllipse2(ref bitmap, cx, cy, rx, ry);
             int rx2 = rx * rx;
             int ry2 = ry * ry;
             int r2y2 = 2 * ry2;
             int r2x2 = 2 * rx2;
-            int rdel2 =(int)(rx2 / Math.Sqrt(rx2 + ry2));////????
+            
+            int rdel2 =(int)(rx2 / Math.Sqrt(rx2 + ry2)); //производная для ограничения
+
 
             int x = 0;
             int y = ry;
@@ -70,16 +70,16 @@ namespace Laba4
                 df += r2y2; ;
                 f += df + ry2;
             }
+
+
             delta = r2y2 * x ;            
             f +=(int) (-ry2 * (x + 0.75) - rx2 * (y - 0.75));
-            df = -r2x2 * y;
-            
+            df = -r2x2 * y;           
 
-            //y=18 and 31
+            
             for (; y >= 0; y -= 1)
             {
-                //double deltax = Math.Sqrt(rx2 * ry2 - y * y * rx2) / ry;
-                //int dx = (int)Math.Round(deltax);
+               
                 AddPoint(ref bitmap, cx, cy, x, y, drawcolor); 
 
                 if (f < 0)

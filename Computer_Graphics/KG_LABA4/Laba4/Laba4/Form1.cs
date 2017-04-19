@@ -16,12 +16,21 @@ namespace Laba4
         private BitmapZoomer Zoomer;
         private Bitmap viever;
 
+        //настройка авто отключения галочки цвет фона
+        private bool disable_ckeck_box_after_draw = true;
         public Form1()
         {
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Получение данных для элипса и круга с формы
+        /// </summary>
+        /// <param name="X">Центр по X</param>
+        /// <param name="Y">Центр по Y</param>
+        /// <param name="RX">Радиус по X</param>
+        /// <param name="RY">Радиус по Y</param>
+        /// <returns></returns>
         private bool GetParams(out int X, out int Y, out int RX, out int RY)
         {
             X = Y = RX = RY = 0;
@@ -36,12 +45,22 @@ namespace Laba4
             }
             catch 
             {
+                MessageBox.Show("Ошибка ввода данных элипса/круга");
                 return false;
             }
         }
 
+        /// <summary>
+        /// Получение данных для спектра с формы
+        /// </summary>
+        /// <param name="RX">Начальный радиус по X</param>
+        /// <param name="RY">Начальный радиус по Y</param>
+        /// <param name="DRX">дельта радиуса  по X</param>
+        /// <param name="N">количество элипсов</param>
+        /// <returns></returns>
         private bool Getspectr(out int RX, out int RY, out int DRX, out int N)
         {
+           
             DRX = N = RX = RY = 0;
             try
             {
@@ -54,10 +73,12 @@ namespace Laba4
             }
             catch
             {
+                MessageBox.Show("Ошибка ввода данных спектра");
                 return false;
             }
         }      
 
+        //Вызывается после отрисовки окна и инициализирует поля по-умолчанию
         private void Form1_Shown(object sender, EventArgs e)
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -73,23 +94,25 @@ namespace Laba4
             textBox5.Enabled = false;
             textBox8.Enabled = false;
 
+            //параметры элипса
             textBox2.Text = "200";
             textBox3.Text = "200";
             textBox4.Text = "50";
             textBox5.Text = "70";
 
-
+            //параметры спектра
             textBox9.Text = "100";
             textBox8.Text = "70";
             textBox7.Text = "5";
             textBox6.Text = "10";
+            
+            //поумалчанию выбран элипс
             radioButton6.Checked = true;
 
             
 
         }
-
-        
+                
 
         #region Colors
         //Получить цвет для линий.
@@ -193,20 +216,21 @@ namespace Laba4
         }
         #endregion 
 
-        //выключение полей при окружности
+        //выключение полей при выборе окружности
         private void radioButton7_CheckedChanged(object sender, EventArgs e)
         {
             textBox5.Enabled = false;
             textBox8.Enabled = false;
         }
 
-        //включение полей при элипсе
+        //включение полей при выборе элипсе
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
             textBox5.Enabled = true;
             textBox8.Enabled = true;
         }
 
+        //Получение объекта исходя из выбранного radiobutton
         private BaseWorker GetObjectByType()
         {
             if (radioButton1.Checked)
@@ -222,29 +246,40 @@ namespace Laba4
             return new StandartWorker();
         }
 
+        //Отрисовка объета
         private void button8_Click(object sender, EventArgs e)
         {
             BaseWorker st = GetObjectByType();
-
             st.SetColor=GetLineColor;
+
             int X,Y,RX, RY;
-            GetParams(out X, out Y, out RX, out RY);
+            if (GetParams(out X, out Y, out RX, out RY) != true)
+                return;
+
             if (radioButton7.Checked)
                 st.DrawCircle(ref bitmap, X, Y, RX);
             else
                 st.DrawEllipse(ref bitmap, X, Y, RX, RY);
 
-            pictureBox1.Image = Zoomer.zoom( ref bitmap);
-            checkBox1.Checked = false;
+            //зумминг
+            pictureBox1.Image = Zoomer.zoom(ref bitmap);
+            
+            //Выключение галочки 
+            if(disable_ckeck_box_after_draw)
+                checkBox1.Checked = false;
         }
 
+        //Отрисовка спектра
         private void button10_Click(object sender, EventArgs e)
         {
             int Y=pictureBox1.Height/2;
             int X=pictureBox1.Width/2;
             int xr,yr,drx,dry,N;
 
-            Getspectr(out xr, out  yr, out  drx, out  N);
+            if (!Getspectr(out xr, out  yr, out  drx, out  N))
+                return;
+
+            //вычисление шага по y
             dry = yr * drx / xr;
 
             BaseWorker st = GetObjectByType();
@@ -255,8 +290,31 @@ namespace Laba4
             else
                 st.drawSpecrteCircle(ref bitmap, X, Y, xr, yr, drx, N);
 
+            //зумминг
             pictureBox1.Image = Zoomer.zoom(ref bitmap);
-            checkBox1.Checked = false;
+
+            //Выключение галочки 
+            if (disable_ckeck_box_after_draw)
+                checkBox1.Checked = false;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Tester test = new Tester();
+            Bitmap bmp1 = test.Start((int)(pictureBox1.Width), pictureBox1.Height/2,true);
+            Bitmap bmp2 = test.Start((int)(pictureBox1.Width), pictureBox1.Height/2, false);
+
+            Bitmap bm = new Bitmap(pictureBox1.Width , pictureBox1.Height);//ваша нвоая картинка            
+            Graphics g = Graphics.FromImage(bm);
+            g.DrawImage(bmp1, 0, 0, pictureBox1.Width, pictureBox1.Height / 2);
+
+            //g.Dispose();
+            //g = Graphics.FromImage(bm);
+
+            g.DrawImage(bmp2,0 , pictureBox1.Height / 2, pictureBox1.Width, pictureBox1.Height / 2);
+            g.Dispose();
+            pictureBox1.Image = bm;
+
         }
 
     

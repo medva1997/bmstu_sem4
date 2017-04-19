@@ -5,12 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+using System.Diagnostics;
+
 
 namespace Laba4
 {
     class BaseWorker
     {
         protected Color drawcolor = Color.Black;
+
+        protected bool drawflag=true;
 
         public Color SetColor
         {
@@ -19,10 +23,13 @@ namespace Laba4
 
         protected int AddPoint(ref Bitmap bitmap, int Xc, int Yc, int dx, int dy, Color color)
         {
-            AddPoint(ref bitmap, Xc + dx, Yc + dy, color);
-            AddPoint(ref bitmap, Xc - dx, Yc + dy, color);
-            AddPoint(ref bitmap, Xc + dx, Yc - dy, color);
-            AddPoint(ref bitmap, Xc - dx, Yc - dy, color);
+            if (drawflag)
+            {
+                AddPoint(ref bitmap, Xc + dx, Yc + dy, color);
+                AddPoint(ref bitmap, Xc - dx, Yc + dy, color);
+                AddPoint(ref bitmap, Xc + dx, Yc - dy, color);
+                AddPoint(ref bitmap, Xc - dx, Yc - dy, color);
+            }
             
             return 0;
         }
@@ -74,5 +81,38 @@ namespace Laba4
             }
            
         }
+
+
+        public int TestTimeElipse()
+        {
+            int N = 100;
+            Bitmap bmt2 = new Bitmap(300,300);
+            Stopwatch sw = new Stopwatch();
+            drawflag = false;
+            sw.Start();
+            for (int i = 0; i < N; i++)
+            {
+                drawSpecrte(ref bmt2, 150, 150, 70, 120,1,1,50);                
+            }
+            sw.Stop();
+            return Convert.ToInt32(sw.ElapsedMilliseconds);
+        }
+
+        public int TestTimeCircle()
+        {
+            int N = 100;
+            Bitmap bmt2 = new Bitmap(300, 300);
+            Stopwatch sw = new Stopwatch();
+            drawflag = false;
+            sw.Start();
+            for (int i = 0; i < N; i++)
+            {
+                drawSpecrteCircle(ref bmt2, 150, 150, 70, 70, 1, 50);
+
+            }
+            sw.Stop();
+            return Convert.ToInt32(sw.ElapsedMilliseconds);
+        }
+
     }
 }

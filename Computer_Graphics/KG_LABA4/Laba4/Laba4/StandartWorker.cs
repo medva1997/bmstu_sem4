@@ -14,8 +14,9 @@ namespace Laba4
         {
             Pen pen = new Pen(drawcolor, 1);
             var graphics = Graphics.FromImage(bitmap);
-            graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
-            graphics.Flush(System.Drawing.Drawing2D.FlushIntention.Sync);
+           
+            //graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.None;
+            //graphics.Flush(System.Drawing.Drawing2D.FlushIntention.Sync);
             graphics.DrawEllipse(pen, X - RX, Y - RX, 2 * RX, 2 * RX);
             
 
