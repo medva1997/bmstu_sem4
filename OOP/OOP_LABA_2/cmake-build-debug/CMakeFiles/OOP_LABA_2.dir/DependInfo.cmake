@@ -5,8 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/alexey/CLionProjects/OOP_LABA_2/BaseForList.cpp" "/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o"
-  "/home/alexey/CLionProjects/OOP_LABA_2/MyIterator.cpp" "/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o"
-  "/home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp" "/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o"
+  "/home/alexey/CLionProjects/OOP_LABA_2/Node.cpp" "/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/OOP_LABA_2.dir/Node.cpp.o"
   "/home/alexey/CLionProjects/OOP_LABA_2/main.cpp" "/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles/OOP_LABA_2.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

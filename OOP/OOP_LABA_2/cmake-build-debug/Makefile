@@ -150,59 +150,32 @@ BaseForList.cpp.s:
 	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.s
 .PHONY : BaseForList.cpp.s
 
-MyIterator.o: MyIterator.cpp.o
+Node.o: Node.cpp.o
 
-.PHONY : MyIterator.o
-
-# target to build an object file
-MyIterator.cpp.o:
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o
-.PHONY : MyIterator.cpp.o
-
-MyIterator.i: MyIterator.cpp.i
-
-.PHONY : MyIterator.i
-
-# target to preprocess a source file
-MyIterator.cpp.i:
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.i
-.PHONY : MyIterator.cpp.i
-
-MyIterator.s: MyIterator.cpp.s
-
-.PHONY : MyIterator.s
-
-# target to generate assembly for a file
-MyIterator.cpp.s:
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.s
-.PHONY : MyIterator.cpp.s
-
-MyList.o: MyList.cpp.o
-
-.PHONY : MyList.o
+.PHONY : Node.o
 
 # target to build an object file
-MyList.cpp.o:
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o
-.PHONY : MyList.cpp.o
+Node.cpp.o:
+	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/Node.cpp.o
+.PHONY : Node.cpp.o
 
-MyList.i: MyList.cpp.i
+Node.i: Node.cpp.i
 
-.PHONY : MyList.i
+.PHONY : Node.i
 
 # target to preprocess a source file
-MyList.cpp.i:
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyList.cpp.i
-.PHONY : MyList.cpp.i
+Node.cpp.i:
+	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/Node.cpp.i
+.PHONY : Node.cpp.i
 
-MyList.s: MyList.cpp.s
+Node.s: Node.cpp.s
 
-.PHONY : MyList.s
+.PHONY : Node.s
 
 # target to generate assembly for a file
-MyList.cpp.s:
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyList.cpp.s
-.PHONY : MyList.cpp.s
+Node.cpp.s:
+	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/Node.cpp.s
+.PHONY : Node.cpp.s
 
 main.o: main.cpp.o
 
@@ -243,12 +216,9 @@ help:
 	@echo "... BaseForList.o"
 	@echo "... BaseForList.i"
 	@echo "... BaseForList.s"
-	@echo "... MyIterator.o"
-	@echo "... MyIterator.i"
-	@echo "... MyIterator.s"
-	@echo "... MyList.o"
-	@echo "... MyList.i"
-	@echo "... MyList.s"
+	@echo "... Node.o"
+	@echo "... Node.i"
+	@echo "... Node.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

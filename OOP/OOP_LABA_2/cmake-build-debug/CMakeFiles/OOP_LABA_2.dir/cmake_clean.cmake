@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/OOP_LABA_2.dir/main.cpp.o"
   "CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o"
-  "CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o"
-  "CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o"
+  "CMakeFiles/OOP_LABA_2.dir/Node.cpp.o"
   "OOP_LABA_2.pdb"
   "OOP_LABA_2"
 )

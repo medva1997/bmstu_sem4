@@ -105,71 +105,45 @@ CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o.provides: CMakeFiles/OOP_LABA_2.dir/
 CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o.provides.build: CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o
 
 
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o: CMakeFiles/OOP_LABA_2.dir/flags.make
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o: ../MyList.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o -c /home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.o: CMakeFiles/OOP_LABA_2.dir/flags.make
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.o: ../Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/OOP_LABA_2.dir/Node.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_LABA_2.dir/Node.cpp.o -c /home/alexey/CLionProjects/OOP_LABA_2/Node.cpp
 
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_LABA_2.dir/MyList.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp > CMakeFiles/OOP_LABA_2.dir/MyList.cpp.i
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_LABA_2.dir/Node.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/CLionProjects/OOP_LABA_2/Node.cpp > CMakeFiles/OOP_LABA_2.dir/Node.cpp.i
 
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_LABA_2.dir/MyList.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp -o CMakeFiles/OOP_LABA_2.dir/MyList.cpp.s
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_LABA_2.dir/Node.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/CLionProjects/OOP_LABA_2/Node.cpp -o CMakeFiles/OOP_LABA_2.dir/Node.cpp.s
 
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.requires:
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.requires:
 
-.PHONY : CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.requires
+.PHONY : CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.requires
 
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.provides: CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.requires
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.provides.build
-.PHONY : CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.provides
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.provides: CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.requires
+	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.provides.build
+.PHONY : CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.provides
 
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.provides.build: CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o
-
-
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o: CMakeFiles/OOP_LABA_2.dir/flags.make
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o: ../MyIterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o -c /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.cpp
-
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.cpp > CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.i
-
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.cpp -o CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.s
-
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.requires:
-
-.PHONY : CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.requires
-
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.provides: CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.requires
-	$(MAKE) -f CMakeFiles/OOP_LABA_2.dir/build.make CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.provides.build
-.PHONY : CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.provides
-
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.provides.build: CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.provides.build: CMakeFiles/OOP_LABA_2.dir/Node.cpp.o
 
 
 # Object files for target OOP_LABA_2
 OOP_LABA_2_OBJECTS = \
 "CMakeFiles/OOP_LABA_2.dir/main.cpp.o" \
 "CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o" \
-"CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o" \
-"CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o"
+"CMakeFiles/OOP_LABA_2.dir/Node.cpp.o"
 
 # External object files for target OOP_LABA_2
 OOP_LABA_2_EXTERNAL_OBJECTS =
 
 OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/main.cpp.o
 OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o
-OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o
-OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o
+OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/Node.cpp.o
 OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/build.make
 OOP_LABA_2: CMakeFiles/OOP_LABA_2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable OOP_LABA_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexey/CLionProjects/OOP_LABA_2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable OOP_LABA_2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OOP_LABA_2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -179,8 +153,7 @@ CMakeFiles/OOP_LABA_2.dir/build: OOP_LABA_2
 
 CMakeFiles/OOP_LABA_2.dir/requires: CMakeFiles/OOP_LABA_2.dir/main.cpp.o.requires
 CMakeFiles/OOP_LABA_2.dir/requires: CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o.requires
-CMakeFiles/OOP_LABA_2.dir/requires: CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o.requires
-CMakeFiles/OOP_LABA_2.dir/requires: CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o.requires
+CMakeFiles/OOP_LABA_2.dir/requires: CMakeFiles/OOP_LABA_2.dir/Node.cpp.o.requires
 
 .PHONY : CMakeFiles/OOP_LABA_2.dir/requires
 

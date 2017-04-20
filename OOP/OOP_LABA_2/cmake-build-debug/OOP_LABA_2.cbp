@@ -90,22 +90,37 @@
 		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/BaseForList.h">
 			<Option target="OOP_LABA_2"/>
 		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/Iterators.h">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
 		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/MException.h">
-			<Option target="OOP_LABA_2"/>
-		</Unit>
-		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/MyIterator.cpp">
-			<Option target="OOP_LABA_2"/>
-		</Unit>
-		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/MyIterator.h">
-			<Option target="OOP_LABA_2"/>
-		</Unit>
-		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp">
 			<Option target="OOP_LABA_2"/>
 		</Unit>
 		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/MyList.h">
 			<Option target="OOP_LABA_2"/>
 		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/MyList_code.h">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/Node.cpp">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/Node.h">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/base_iterator.h">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/base_iterator_code.h">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/iterators_code.h">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
 		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/main.cpp">
+			<Option target="OOP_LABA_2"/>
+		</Unit>
+		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/st.h">
 			<Option target="OOP_LABA_2"/>
 		</Unit>
 		<Unit filename="/home/alexey/CLionProjects/OOP_LABA_2/CMakeLists.txt">

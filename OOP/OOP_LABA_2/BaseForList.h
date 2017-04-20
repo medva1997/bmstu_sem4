@@ -7,21 +7,26 @@
 
 
 #include <cstddef>
+#include "st.h"
 
-class BaseForList {
+namespace laba {
+    namespace laba_core {
+        class BaseForList {
 
-public:
-    BaseForList();
+        public:
+            explicit BaseForList();
 
-    bool isEmpty() const;
+            virtual ~BaseForList();
 
-    int getSize() const;
-    void incSize();
-    void decSize();
-    void setSize(int n);
+            bool is_empty() const;
 
-private:
-    int CurrentSize;
-};
+            size_t size() const;
+
+        protected:
+            size_t element_count;
+        };
+    }
+}
+
 
 #endif //OOP_LABA_2_BASEFORLIST_H

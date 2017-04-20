@@ -4,21 +4,20 @@
 CMakeFiles/OOP_LABA_2.dir/BaseForList.cpp.o
  /home/alexey/CLionProjects/OOP_LABA_2/BaseForList.cpp
  /home/alexey/CLionProjects/OOP_LABA_2/BaseForList.h
-CMakeFiles/OOP_LABA_2.dir/MyIterator.cpp.o
- /home/alexey/CLionProjects/OOP_LABA_2/BaseForList.h
- /home/alexey/CLionProjects/OOP_LABA_2/MException.h
- /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.cpp
- /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.h
- /home/alexey/CLionProjects/OOP_LABA_2/MyList.h
-CMakeFiles/OOP_LABA_2.dir/MyList.cpp.o
- /home/alexey/CLionProjects/OOP_LABA_2/BaseForList.h
- /home/alexey/CLionProjects/OOP_LABA_2/MException.h
- /home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp
- /home/alexey/CLionProjects/OOP_LABA_2/MyList.h
+ /home/alexey/CLionProjects/OOP_LABA_2/st.h
+CMakeFiles/OOP_LABA_2.dir/Node.cpp.o
+ /home/alexey/CLionProjects/OOP_LABA_2/Node.cpp
+ /home/alexey/CLionProjects/OOP_LABA_2/Node.h
+ /home/alexey/CLionProjects/OOP_LABA_2/st.h
 CMakeFiles/OOP_LABA_2.dir/main.cpp.o
  /home/alexey/CLionProjects/OOP_LABA_2/BaseForList.h
+ /home/alexey/CLionProjects/OOP_LABA_2/Iterators.h
  /home/alexey/CLionProjects/OOP_LABA_2/MException.h
- /home/alexey/CLionProjects/OOP_LABA_2/MyIterator.h
- /home/alexey/CLionProjects/OOP_LABA_2/MyList.cpp
  /home/alexey/CLionProjects/OOP_LABA_2/MyList.h
+ /home/alexey/CLionProjects/OOP_LABA_2/MyList_code.h
+ /home/alexey/CLionProjects/OOP_LABA_2/Node.h
+ /home/alexey/CLionProjects/OOP_LABA_2/base_iterator.h
+ /home/alexey/CLionProjects/OOP_LABA_2/base_iterator_code.h
+ /home/alexey/CLionProjects/OOP_LABA_2/iterators_code.h
  /home/alexey/CLionProjects/OOP_LABA_2/main.cpp
+ /home/alexey/CLionProjects/OOP_LABA_2/st.h

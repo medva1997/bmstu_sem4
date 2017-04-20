@@ -4,25 +4,22 @@
 
 #include "BaseForList.h"
 
-BaseForList::BaseForList() : CurrentSize(0){}
+using namespace laba::laba_core;
 
-int BaseForList::getSize() const {
-    return CurrentSize;
+BaseForList::BaseForList()
+        : element_count(0) {}
+
+BaseForList::~BaseForList()
+{
+    this->element_count = 0;
 }
 
-void BaseForList::decSize(){
-    CurrentSize--;
+bool BaseForList::is_empty() const
+{
+    return element_count == 0;
 }
 
-void BaseForList::incSize(){
-    CurrentSize++;
-}
-
-void BaseForList::setSize(int n){
-    CurrentSize=n;
-}
-
-
-bool BaseForList::isEmpty() const {
-    return (CurrentSize == 0);
+size_t BaseForList::size() const
+{
+    return element_count;
 }

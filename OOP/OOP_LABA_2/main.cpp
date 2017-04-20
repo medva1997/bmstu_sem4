@@ -1,78 +1,71 @@
 #include <iostream>
-#include "MyList.h"
-#include "MyList.cpp"
+#include "MException.h"
+#include "Iterators.h"
 
-#include "MyIterator.h"
-#include "MyIterator.cpp"
+using std::cin;
+using std::cout;
+using std::endl;
+using namespace laba;
 
 int main() {
 
+    try {
+        MyList<int> list;
+        MyList<int> list2(2, 10000, 20000);
+        list = list2;
+        //cin>>list;
 
-    MyList<int> list;
-    MyList<int> list2(2,10000,20000);
-    list=list2;
+        cout << list << endl;
+        if (list == list2)
+            cout << "true" << endl;
 
-    std::cout<<list<<std::endl;
-    if(list==list2)
-        std::cout<<"true"<<std::endl;
-
-    list2.pushFront(10);
-    list2<<10;
-    list2+=11;
-    list2.popBack();
-    list2.popFront();
-    list.merge(list2);
-    list+=list2;
-    list.remove(10);
-    list-=10;
-
-
-    if(list!=list2)
-        std::cout<<"true"<<std::endl;
+        list2.pushFront(10);
+        list2 << 10;
+        list2 += 11;
+        list2.popBack();
+        list2.popFront();
+        list.merge(list2);
+        list += list2;
+        list.remove(10);
+        list -= 10;
 
 
-    list2.pushFront(2);
-    list2.pushBack(10);
-    list2.pushBack(11);
-    list2.pushBack(12);
-    list2.pushFront(2);
+        if (list != list2)
+            cout << "true" << endl;
 
-    list+=3;
-    list+=list2;
 
-    std::cout << "Iterator: ";
+        list2.pushFront(2);
+        list2.pushBack(10);
+        cout << list << endl;
+        cout << "Iterator: "<< endl;
 
-    for (MyIterator<int> iter(list); iter.valid(); iter.next())
-        std::cout << iter.value()<< " ";
 
-    std::cout << std::endl;
+        list_iterator<int> iter = list.begin();
+        iter++;
+        list.InsertAfter(27, iter);
+        cout << "Hello, World!" << endl;
 
-    ///////////////////////////////////////////////////////////
-    MyIterator<int> iter1(list), iter2(list2);
-    bool eq = false;
-    try
-    {
-        eq = iter1.equal(iter2);
-    }
-    catch(MExceptionBase& exc)
-    {
-        std::cout << "Error: " << exc.what() << std::endl;
-    }
-    /////////////////////////////////////////////////////////
+        iter = list.begin();
+        for (; iter.check(); ++iter) {
+            cout << *iter << " ";
+        }
 
-    int val;
-    --iter1;
+        iter = list.begin();
+        iter++;
+        list.InsertAfter(25,iter);
+        iter=list.end();
+        list.remove(iter);
 
-    try
-    {
-        val = iter1.value();
+        int *arr=list.ToArray();
+        cout<<endl<<arr[0]<<" "<<arr[2]<<" hi "<<endl;
+
+        ///////////////
+        ++iter;
     }
     catch (MExceptionBase& exc)
     {
-        std::cout << "Error: " << exc.what() << std::endl;
+        cout << "Error: " << exc.what() << endl;
     }
-
-
-    std::cout << "Hello, World!" << std::endl;
+    cout << "Hello, World!" << endl;
 
 }
