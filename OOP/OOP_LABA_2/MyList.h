@@ -28,7 +28,7 @@ namespace laba {
         const T& getTail() const;
 
 
-        MyList(const MyList<T>& other);            // Конструктор копирования
+        explicit MyList(const MyList<T>& other);            // Конструктор копирования
         MyList(MyList<T>&& other);                 // Конструктор перемещения
         explicit MyList(size_t n, ...);            // Задание перечислением
         MyList(T* array, int n);
@@ -58,7 +58,7 @@ namespace laba {
 
         const_list_iterator<T> end() const;
 
-        T* ToArray();
+        T* ToArray(int* size);
 
 
         void merge(const MyList& other);        // Добавление списка (к исходному)

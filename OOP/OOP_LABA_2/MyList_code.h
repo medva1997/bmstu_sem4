@@ -133,7 +133,7 @@ namespace laba {
     }
 
     template<typename T>
-    T* MyList<T>::ToArray()
+    T* MyList<T>::ToArray(int *s)
     {
         T* array=new T[size()];
 
@@ -141,6 +141,7 @@ namespace laba {
         for (int i=0; it1.check();  ++it1,i++) {
             array[i]=*it1;
         }
+        *s=size();
         return array;
     }
 

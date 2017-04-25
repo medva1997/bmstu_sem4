@@ -39,6 +39,13 @@ int main() {
         cout << list << endl;
         cout << "Iterator: "<< endl;
 
+        const MyList<int> list3(3,100,200,300);
+        const_list_iterator<int> it=list3.begin();
+
+        for (; it.check(); ++it) {
+            cout << *it << " ";
+        }
+
 
         list_iterator<int> iter = list.begin();
         iter++;
@@ -56,7 +63,8 @@ int main() {
         iter=list.end();
         list.remove(iter);
 
-        int *arr=list.ToArray();
+        int s;
+        int *arr=list.ToArray(&s);
         cout<<endl<<arr[0]<<" "<<arr[2]<<" hi "<<endl;
 
         ///////////////
