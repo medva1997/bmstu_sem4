@@ -1,0 +1,10 @@
+PUSHR MACRO LIST 
+;б яохяйе  LIST опнаекш ме дносяйючряъ
+  IRP A,<LIST>
+    IFIDN <A>,<F>
+      PUSHF
+    ELSE
+      PUSH A
+    ENDIF
+  ENDM
+ENDM

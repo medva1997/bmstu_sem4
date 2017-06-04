@@ -1,0 +1,116 @@
+http://natalia.appmat.ru/c%26c%2B%2B/assembler.html
+MASM /Zi  ИмяФайла.ASM,,;
+LINK /CO  ИмяФайла.OBJ,,,;
+
+Условные обозначения состояний флагов 1(0): 
+OV(NV)– флаг OF -переполнения
+UP(DN)– флаг DF -направления
+EI(DI)– флаг IF -разрешения прерываний
+PL(NG)– флаг SF -знака
+ZR(NZ)– флаг ZF -Нуля
+AC(NA)– флаг AF -Доп.перенос
+PO(PE)– флаг PF -четности
+CY(NC)– флаг CF -переноса
+
+DB (define byte)–  1 байт;
+DW (define word)–  2 байта (слово);
+DD (define double word)–  4 байта (двойное слово);
+
+Общего назначения
+AX-исходные данные операций
+BX-База(можно свободноиспользовать)
+CX-счётчик цикла(LOOP)
+DX-результата операции
+
+Адресные регистры: CI,DI,BP
+
+Сегментные регистры
+СS-Номер параграфа в памяти,DS,SS,ES
+
+Индексные: SI, D, SP(Вершина стека)
+
+SUB -вычитание
+; c = a + b
+mov   eax, a
+add   eax, b
+mov   c, eax
+
+INC <операнд>
+DEC <операнд>
+
+Если операнд команды MUL имеет размер 1 байт, то второй сомножитель берётся из регистра AL, а результат помещается в регистр AX. Если операнд команды MUL имеет размер 2 байта, то второй сомножитель берётся из регистра AX, а результат помещается в регистровую пару DX:AX. 
+; AX = AX * x, AX = 26880
+mov   ax, 105
+mul   x		
+
+
+Если делитель имеет размер 1 байт, то делимое берётся из регистра AX. 
+Если делитель имеет размер 2 байта, то делимое берётся из регистровой пары DX:AX.
+Если делитель имеет размер 1 байт, то частное помещается в регистр AL, а остаток – в регистр AH. 
+Если делитель имеет размер 2 байта, то частное помещается в регистр AX, а остаток – в регистр DX.
+; AL = 19h = 25,  AH = 02h = 2
+mov   ax, 127
+mov   bl, 5
+div   bl
+
+Мнемокод Условие перехода после команды CMP op1, op2	Значения флагов	
+JE		Переход op1 = op2	ZF = 1		Для всех чисел
+JNE		Переход op1 ≠ op2	ZF = 0  	Для всех чисел
+JL/JNGE	Переход op1 < op2	SF ≠ OF		Для чисел со знаком
+JLE/JNG	Переход op1 ≤ op2	SF ≠ OF или ZF = 1
+JG/JNLE	Переход op1 > op2	SF = OF и ZF = 0
+JGE/JNL	Переход op1 ≥ op2	SF = OF
+JB/JNAE	Переход op1 < op2	CF = 1		Для чисел без знака
+JBE/JNA	Переход op1 ≤ op2	CF = 1 или ZF = 1
+JA/JNBE	Переход op1 > op2	CF = 0 и ZF = 0
+JAE/JNB	Переход	op1 ≥ op2	CF = 0
+JZ		ZF = 1	
+JNZ		ZF =
+
+
+Рассмотрим пример: даны две переменные x и y, в переменную z нужно записать максимальное из чисел x и y.
+
+   mov   eax, x
+   cmp   eax, y
+   jge/jae L				
+   mov   eax, y
+L: mov   z, eax
+
+
+    SSTACK     SEGMENT PARA STACK  'STACK'
+                DB   64 DUP('СТЕК____')
+    SSTACK     ENDS
+
+    DSEG          SEGMENT  PARA PUBLIC 'DATA'
+    	K         	DB      ?
+    	MSG0       DB      'НАЧАЛО РАБОТЫ',13,10,'$'
+    DSEG          ENDS
+PAGE
+     CSEG      SEGMENT PARA PUBLIC 'CODE'
+               ASSUME CS:CSEG,DS:DSEG,SS:SSTACK
+
+     myproc proc near
+		ret
+	 myproc endp
+
+     START     PROC FAR
+     		   PUSH  DS ; поместить в стек номер параграфа адреса возврата
+               MOV  AX,0
+               PUSH  AX
+
+               MOV  AX,DSEG
+               MOV  DS,AX
+               call myproc
+
+     ; вывод текста "НАЧАЛО РАБОТЫ"
+     M2:       MOV  AH,9
+               MOV  DX,OFFSET MSG0
+               INT  21H
+
+     M6:       MOV  AH,4CH
+               MOV  AL,0
+               INT 21H
+
+     START     ENDP
+     CSEG      ENDS
+               END  START

@@ -1,0 +1,11 @@
+>G
+Bad register
+Bad register
+Bad register
+Bad register
+Bad register
+Bad register
+Bad register
+Bad register
+Program terminated normally (0)
+>
