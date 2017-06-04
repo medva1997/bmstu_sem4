@@ -65,7 +65,13 @@ namespace KG_LABA8
                         {
                             Parallel parar = new Parallel();
                             //parar.SearchNearest(ref poligone,coordinates);
-                            points.Add(parar.SearchNearest(ref poligone,points[points.Count - 1], coordinates));
+                            List<Point> temp_poligone = new List<Point>();
+                            for (int i = 0; i < poligone.Count; i++)
+                            {
+                                temp_poligone.Add(poligone[i]);
+                            }
+                            points.Add(parar.SearchNearest(temp_poligone,points[points.Count - 1], coordinates));
+                            temp_poligone.Clear();
                         }
                         else
                         {
@@ -115,7 +121,8 @@ namespace KG_LABA8
 
         private void DrawAll()
         {
-            Graphics g = pictureBox1.CreateGraphics();
+            bmt = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics g = Graphics.FromImage(bmt);
             Pen penline = new Pen(line_color.BackColor, 1);
             Pen penpoligone = new Pen(poligon_color.BackColor, 1);
             pictureBox1.Refresh();
@@ -127,6 +134,8 @@ namespace KG_LABA8
 
             if (poligone.Count() > 1) 
                 g.DrawPolygon(penpoligone, poligone.ToArray());
+
+            pictureBox1.BackgroundImage = bmt;
 
         }
 
@@ -147,7 +156,7 @@ namespace KG_LABA8
         private void cut_color_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            line_color.BackColor = colorDialog1.Color;
+            cut_color.BackColor = colorDialog1.Color;
             DrawAll();
         }
 
@@ -249,7 +258,8 @@ namespace KG_LABA8
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
 
-            DrawAll();
+          
+            pictureBox1.Refresh();
             Graphics g = pictureBox1.CreateGraphics();
             Pen penline = new Pen(line_color.BackColor, 1);
 
@@ -267,7 +277,13 @@ namespace KG_LABA8
                         {
                             Parallel parar = new Parallel();
                             //parar.SearchNearest(ref poligone,coordinates);
-                            g.DrawLine(penline, points[points.Count - 1], parar.SearchNearest(ref poligone, points[points.Count - 1], new Point(e.X, e.Y)));
+                            List<Point> temp_poligone = new List<Point>();
+                            for (int i = 0; i < poligone.Count; i++)
+                            {
+                                temp_poligone.Add(poligone[i]);
+                            }
+                            g.DrawLine(penline, points[points.Count - 1], parar.SearchNearest( temp_poligone, points[points.Count - 1], new Point(e.X, e.Y)));
+                            temp_poligone.Clear();
                         }
                         
                     }
@@ -280,9 +296,21 @@ namespace KG_LABA8
             }
         }
 
+        Bitmap bmt;
         private void button2_Click(object sender, EventArgs e)
         {
-            Algo ag=new Algo(poligone,points,cut_color.BackColor,pictureBox1.CreateGraphics());
+            Graphics g = Graphics.FromImage(bmt);
+            List<Point> temp_poligone = new List<Point>();
+            for (int i = 0; i < poligone.Count; i++ )
+            {
+                temp_poligone.Add(poligone[i]);
+            }
+            Algo ag=new Algo(temp_poligone,points,cut_color.BackColor,g);
+            temp_poligone.Clear();
+            pictureBox1.BackgroundImage = bmt;
+            g.Flush();
+            pictureBox1.Refresh();
+            //DrawAll();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -292,6 +320,11 @@ namespace KG_LABA8
             RecreteDataGridViews();
             DrawAll();
 
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            bmt = new Bitmap(pictureBox1.Width, pictureBox1.Height);
         }
 
 

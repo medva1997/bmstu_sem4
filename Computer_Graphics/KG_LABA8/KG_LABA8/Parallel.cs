@@ -11,7 +11,6 @@ namespace KG_LABA8
     class Parallel
     {
         private List<Point> polynom;
-        private Line NearestSide;
 
         struct Line
         {
@@ -25,67 +24,97 @@ namespace KG_LABA8
             }
         };
 
-        public Point SearchNearest(ref List<Point> polynom,Point s, Point p)
+
+        private void GenerateLines(List<Line> lines_list)
+        {
+            for(int i=0; i<polynom.Count-1; i++)
+            {
+                lines_list.Add(new Line(polynom[i], polynom[i + 1]));
+                lines_list.Add(new Line(polynom[i+1], polynom[i]));
+            }          
+        }
+
+        private double CountK(Line line)
+        {
+            double K = 0;
+
+            if (line.first.X != line.second.X)
+                K = (line.second.Y - line.first.Y)*1.0 / (line.second.X - line.first.X);
+            else
+                K = Math.Pow(10, 30);
+            return K;
+        }
+
+        private List<double> CountKForLines(List<Line> lines_list)
+        {
+            List<double> K = new List<double>();
+
+            for (int i = 0; i < lines_list.Count; i++)
+            {
+                K.Add(CountK(lines_list[i])); 
+                //K.Add(CountK(new Line(lines_list[i].second,lines_list[i].first)));
+            }
+            return K;
+        }
+
+
+        public Point SearchNearest(List<Point> polynom, Point s, Point p)
         {
             this.polynom = polynom;
-            findNearSide(p);
-            Point newp=new Point(p.X,p.Y);
-            calculateParalPoint(s, ref newp);
-            return newp;
+            this.polynom.Add(polynom[0]);
+            Point newp = new Point(p.X, p.Y);
+            List<Line> lines_list = new List<Line>();
+            GenerateLines(lines_list);
+            Line current_line = new Line(s, p);
+            
+            List<double> K = CountKForLines(lines_list);
 
-        }
-
-
-        private double distanse(Point a, Point b)
-        {
-            return Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y));
-        }
-
-        private double findDistanse(Point a, Point b, Point p)
-        {
-            double ab, bp, ap;
-            ab = distanse(a, b);
-            bp = distanse(p, b);
-            ap = distanse(a, p);
-            if (bp * bp + ab * ab < ap * ap)
+            double current_k=0;
+            if (Math.Abs(s.X - p.X) < 2)
             {
-                return bp;
+                current_k = Math.Pow(10, 30);
             }
-            if (bp * bp > ab * ab + ap * ap)
+            else
             {
-                return ap;
+                current_k = CountK(current_line);
             }
-            double d = Math.Abs((b.Y - a.Y) * p.X - (b.X - a.X) * p.Y + b.X * a.Y - b.Y * a.X) / ab;
-            return d;
-        }
 
-        private void findNearSide(Point p)
-        {
-            int minside = 0;
-            double mindistance = findDistanse(polynom[0], polynom[1], p);
-            int n = polynom.Count - 1;
-            for (int i = 0; i < n; i++)
+            double closer_k = K[0];
+
+            for (int i = 1; i < K.Count; i++)
             {
-                double tmp = findDistanse(polynom[i], polynom[i + 1], p);
-                if (tmp < mindistance)
+                if (Math.Abs(current_k - K[i]) < Math.Abs(current_k - closer_k))
                 {
-                    mindistance = tmp;
-                    minside = i;
+                    closer_k = K[i];
                 }
             }
-            NearestSide = new Line(polynom[minside], polynom[minside + 1]);
-        }
 
-        private void calculateParalPoint(Point s, ref Point p)
-        {
-            if (NearestSide.first.X == NearestSide.second.X)
+            this.polynom.RemoveRange(polynom.Count - 1, 1);
+
+            lines_list.Clear();
+            K.Clear();
+            if (closer_k == Math.Pow(10, 30))
             {
-                p.X = s.X;
-                return;
+                newp.X = s.X;
+                return newp;
             }
-            double k = (NearestSide.first.Y - NearestSide.second.Y) / (double)
-                       (NearestSide.first.X - NearestSide.second.X);
-            p.Y = (int)(Math.Round((p.X - s.X) * k) + s.Y);
+
+            if (closer_k < 1)
+            {
+                double b = s.Y - closer_k * s.X;
+
+                newp.Y = (int)(closer_k * newp.X+b);
+            }
+            else
+            {
+                double b = s.Y - closer_k * s.X;
+
+                newp.Y = (int)(closer_k * newp.X + b);
+            }
+                     
+            return newp;
         }
+        
+      
     }
 }

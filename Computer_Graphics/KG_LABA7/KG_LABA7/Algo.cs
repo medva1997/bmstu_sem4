@@ -166,12 +166,7 @@ namespace KG_LABA7
             int S1 = GetS(T1);           
             int S2 = GetS(T2);
 
-           
-            //Font f = new Font("Arial", 10);
-            //SolidBrush br = new SolidBrush(Color.Black);
-            //string s = "S1=" + S1.ToString() + " S2=" + S2.ToString() + " P=" + P.ToString();
-            //g.DrawString(s, f, br, new PointF((P1.X + P2.X) / 2, (P1.Y + P2.Y) / 2));
-
+          
             //4
             int pr = 1;
             //5
@@ -263,13 +258,13 @@ namespace KG_LABA7
         {
             if (flag == 1)
             {
-                Pen pen = new Pen(Color.Red, 1);
+                Pen pen = new Pen(Color.Red, 2);
                 g.DrawLine(pen, P1, P2);
                 //Draw
             }
             else
             {
-                Pen pen = new Pen(Color.White, 1);
+                Pen pen = new Pen(Color.White, 2);
                 //g.DrawLine(pen, P1, P2);
             }
         }

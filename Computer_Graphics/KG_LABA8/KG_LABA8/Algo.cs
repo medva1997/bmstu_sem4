@@ -7,6 +7,10 @@ using System.Drawing;
 
 namespace KG_LABA8
 {
+    /// <summary>
+    /// Алгоритм Кируса — Бека
+    /// алгоритм отсечения отрезков произвольным выпуклым многоугольником. 
+    /// </summary>
     class Algo
     {
         private Graphics g;
@@ -21,7 +25,7 @@ namespace KG_LABA8
                     p1 = a;
                     p2 = b;
                 }
-        };
+        };  
 
         struct Vector {
            public int x;
@@ -46,7 +50,7 @@ namespace KG_LABA8
             res.z = a.x * b.y - a.y * b.x;
         }
 
-        int ScalarMult(Vector a, Vector b) {
+        int ScalarMultiplication(Vector a, Vector b) {
             return a.x * b.x + a.y * b.y + a.z * b.z;
         }
 
@@ -74,13 +78,18 @@ namespace KG_LABA8
         /// <returns>0-невыпуклый иначе выпуклый</returns>
         private int IsConvexPolygon(List<Point> poligon) 
         {
+               
+                poligon.Add(poligon[0]);
+                
+
                 Vector a=new Vector(poligon[1], poligon[0]);
-                Vector b;
-                int n = poligon.Count-1;
-                Vector tmp = new Vector(); ;
+                Vector b= new Vector();
+                Vector tmp = new Vector(); 
+                int n = poligon.Count;
+                
                 int res = 0;
 
-                for(int i = 1; i < n; i++) 
+                for(int i = 1; i < n-1; i++) 
                 {
                     b = new Vector(poligon[i + 1], poligon[i]);
                     VectorMult(a, b, ref tmp);
@@ -90,13 +99,13 @@ namespace KG_LABA8
 
                     if(res != SIGN(tmp.z))
                     {
-                        if(tmp.z==0)
+                        if(tmp.z!=0)
                             return 0;
                     }                   
                     a = b;
                 }
 
-                b = new Vector(poligon[0], poligon[n]);
+                b = new Vector(poligon[1], poligon[0]);
                 VectorMult(a, b, ref tmp);
 
                 if (res == 0)
@@ -104,10 +113,13 @@ namespace KG_LABA8
 
                 if (res != SIGN(tmp.z))
                 {
-                    if (tmp.z == 0)
+                    if (tmp.z != 0)
                         return 0;
-                }
-                a = b;
+                }                
+
+                poligon.RemoveAt(n-1);
+               
+               
 
                 return res;
             }
@@ -115,22 +127,25 @@ namespace KG_LABA8
         /// <summary>
         /// Поиск нормалей 
         /// </summary>
-        /// <param name="poligon">набор вершин многоугольника</param>
+        /// <param name="polygon">набор вершин многоугольника</param>
         /// <param name="obhod">направление обхода</param>
         /// <param name="normVect">набор векторов</param>
-        private void findNormVectorsToSide(List<Point> poligon, int obhod, ref List<Vector> normVect) 
+        private void FindNormVectors(List<Point> polygon, int obhod, ref List<Vector> normVect) 
         {
-            int n = poligon.Count -1;
-            Vector b=new Vector();;
+            int n = polygon.Count -1;
+            Vector b=new Vector();
+
             for(int i = 0; i < n; i++) {
-                b =new Vector(poligon[i+1], poligon[i]);
+                b =new Vector(polygon[i+1], polygon[i]);
+
                 if(obhod == -1)
                     normVect.Add(new Vector(b.y, -b.x));
                 else
                     normVect.Add(new Vector(-b.y, b.x));
             }
+
             //Фикс1
-            b = new Vector(poligon[0], poligon[n]);
+            b = new Vector(polygon[0], polygon[n]);
             if (obhod == -1)
                 normVect.Add(new Vector(b.y, -b.x));
             else
@@ -148,48 +163,57 @@ namespace KG_LABA8
         /// <summary>
         /// отсечение отрезка
         /// </summary>
-        /// <param name="polynom"></param>
+        /// <param name="polygon"></param>
         /// <param name="normVect"></param>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <param name="visible"></param>
         /// <returns></returns>
-       int CutSegment(List<Point> polynom, List<Vector> normVect, ref Point p1, ref Point p2, ref bool visible)
+       int LineCutter(List<Point> polygon, List<Vector> normVect, ref Point p1, ref Point p2, ref bool visible)
        {
            visible = false;
            //Фикс2 здесь
-           int n = polynom.Count;
+           int n = polygon.Count;
 
            Vector D, W;
            int Dsk, Wsk;
           
            double tbot = 0, ttop = 1;
            double t;
-           D = new Vector(p2, p1);
+           D = new Vector(p2, p1); //Вектор нашего отрезка
 
            //цикл отсечения отрезка по всем граням
            for (int i = 0; i < n; i++)
            {
-               W = new Vector(p1, polynom[i]);
+               W = new Vector(p1, polygon[i]);//вектор соединяющий начало отезка и вершину многоугольника
 
-               Dsk = ScalarMult(D, normVect[i]);
-               Wsk = ScalarMult(W, normVect[i]);
+               Dsk = ScalarMultiplication(D, normVect[i]); //Показывает угол и с какой стороны угол
 
+               Wsk = ScalarMultiplication(W, normVect[i]);// Видимость для парелльных
+
+               //Если D И сторона параллельны
                if (Dsk == 0)
                {
+                   //За пределами 
                    if (Wsk < 0)
                        return 0;
                }
                else
                {
+                   //Если T [0 до 1] то точка пересечения на отрезке
                    t = -Wsk / (double)Dsk;
 
+                   //точка пересения ближе к начало
+                   //верктор D и N В одну сторону
                    if (Dsk > 0)
                    {
+                       //Точка пересечния вне отрезка
                        if (t > 1)
                            return 0;
                        else
                        {
+                           //отрезок P направлен с внутренней на внешнюю сторону ребра E. 
+                           //В этом случае параметр tA заменяется на tE, если tE > tA.
                            tbot = Math.Max(tbot, t);
                        }
                    }
@@ -199,45 +223,43 @@ namespace KG_LABA8
                            return 0;
                        else
                        {
+                           //отрезок P направлен с внешней на внутреннюю сторону ребра E. 
+                           //В этом случае параметр tB заменяется на tE, если tE < tB.
                            ttop = Math.Min(ttop, t);
                        }
                    }
                }
            }
-
+           //заданная параметрами t* часть отрезка P видима
            if (tbot <= ttop)
            {
                Point tmp = P(tbot, p1, p2);
                p2 = P(ttop, p1, p2);
                p1 = tmp;
-               //qDebug() << "ok";
                visible = true;
            }
            return 0;
        }
 
-       int SimpleAlgo(List<Point> poligon, List<Line> lines)
+       int Algoritm(List<Point> polygon, List<Line> lines)
        {
            //poligon.Add(poligon[0]);
            //проверка ны выпуклость
-           int obhod = IsConvexPolygon(poligon);
-           if (obhod == 0)
+           int direction = IsConvexPolygon(polygon);
+           if (direction == 0)
                return 1;
 
            //поизк нормалей
            List<Vector> normVect = new List<Vector>(); 
-           findNormVectorsToSide(poligon, obhod, ref normVect);
+           FindNormVectors(polygon, direction, ref normVect);
 
            bool visible = true;
 
            for (int i = 0; i < lines.Count; i++)
            {
                Line s = lines[i];
-
-               //Pen pen2 = new Pen(Color.Blue, 1);
-               //g.DrawLine(pen2, s.p1, s.p2);
                //отсечение линии
-               CutSegment(poligon, normVect, ref s.p1, ref s.p2, ref visible);
+               LineCutter(polygon, normVect, ref s.p1, ref s.p2, ref visible);
                
                //отрисовка отсечения
                if (visible)
@@ -249,7 +271,7 @@ namespace KG_LABA8
            return 0;
        }
 
-
+        
 
         public  Algo(List<Point> poligon, List<Point> points, Color color, Graphics g)
         {
@@ -261,7 +283,9 @@ namespace KG_LABA8
                 lines.Add(new Line( points[i * 2], points[i * 2 + 1]));
             }
            
-            SimpleAlgo(poligon, lines);
+            int code=Algoritm(poligon, lines);
+            if (code == 1)
+                System.Windows.Forms.MessageBox.Show("Похоже он не выпуклый");
         }
     }
 }
